@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Anissa, Be My Valentine?</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ffdde1, #ee9ca7);
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            color: #d6336c;
+            margin-top: 100px;
+            position: relative;
+            z-index: 2;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            position: absolute;
+            transition: 0.2s;
+            z-index: 2;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            left: 40%;
+            top: 55%;
+        }
+
+        #noBtn {
+            background-color: #6c757d;
+            color: white;
+            left: 55%;
+            top: 55%;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            color: #ff4d6d;
+            font-size: 20px;
+            animation: floatUp linear infinite;
+            opacity: 0.8;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0.9; }
+            100% { transform: translateY(-110vh) scale(1.5); opacity: 0; }
+        }
+
+        iframe {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Music (Autoplay) -->
+    <iframe width="0" height="0"
+        src="https://www.youtube.com/embed/vBy7FaapGRo?autoplay=1&loop=1&playlist=vBy7FaapGRo"
+        frameborder="0"
+        allow="autoplay">
+    </iframe>
+
+    <h1>Anissa, will you be my Valentine? 💕</h1>
+
+    <button id="yesBtn" onclick="yesClicked()">Yes ❤️</button>
+    <button id="noBtn" onmouseover="moveButton()">No 😅</button>
+
+    <script>
+        let yesSize = 18;
+
+        function yesClicked() {
+            document.body.innerHTML = `
+                <h1 style="margin-top:200px; font-size:3em; color:#ff4d6d;">
+                    💖 Richard + Anissa Forever 💖
+                </h1>
+            `;
+        }
+
+        function moveButton() {
+            var noButton = document.getElementById("noBtn");
+            var yesButton = document.getElementById("yesBtn");
+
+            var x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+            var y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+            noButton.style.left = x + "px";
+            noButton.style.top = y + "px";
+
+            yesSize += 6;
+            yesButton.style.fontSize = yesSize + "px";
+            yesButton.style.padding = (yesSize / 1.5) + "px " + (yesSize * 1.5) + "px";
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+            heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 300);
+    </script>
+
+</body>
+</html>
